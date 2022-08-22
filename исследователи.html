@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const explorers = [
+        ["Mallory", "Everest", "Mont Blanc", "Pillar Rock"],
+        ["Mawson", "South Pole", "New Hebrides"],
+        ["Hillary", "Everest", "South Pole"],
+      ]
+      ;[
+        ["Everest", "Hillary", "Mallory"],
+        ["South Pole", "Hillary", "Mawson"],
+        ["Mont Blanc", "Mallory"],
+        ["Pillar Rock", "Mallory"],
+        ["New Hebrides", "Mawson"],
+      ]
+
+      //   const getObjExplo = (arr) => {
+      //     const obj = {}
+      //     arr.forEach((elem) => {
+      //       const places = elem.slice(1)
+
+      //       places.forEach((place) => {
+      //         obj[place] = obj[place] ? [...obj[place], elem[0]] : [elem[0]]
+      //       })
+      //     })
+      //     return Object.keys(obj).map((key) => [key].concat(obj[key]))
+      //   }
+      //   getObjExplo(explowers)
+
+      const getObjToponyms = (arr) => {
+        const objToponym = arr.reduce((obj, item) => {
+          const [explorer, ...toponyms] = item
+
+          toponyms.forEach((toponym) => {
+            if (obj[toponym]) obj[toponym].push(explorer)
+            else obj[toponym] = [explorer]
+          })
+          return obj
+        }, {})
+        return Object.entries(objToponym).map((elem) => {
+          const [toponym, explorers] = elem
+          return [toponym, ...explorers]
+        })
+      }
+      getObjToponyms(explorers)
+
+      //   function solve(input) {
+      //     const resultObject = input.reduce((obj, item) => {
+      //       const [explorer, ...toponyms] = item
+      //       toponyms.forEach((toponym) => {
+      //         if (obj[toponym]) {
+      //           obj[toponym].push(explorer)
+      //         } else {
+      //           obj[toponym] = [explorer]
+      //         }
+      //       })
+      //       return obj
+      //     }, {})
+
+      //     const entries = Object.entries(resultObject)
+
+      //     const answer = entries.map((item) => {
+      //       const [toponym, explorers] = item
+      //       return [toponym, ...explorers]
+      //     })
+
+      //     return answer
+      //   }
+
+      //   const input = [
+      //     ["Mallory", "Everest", "Mont Blanc", "Pillar Rock"],
+      //     ["Mawson", "South Pole", "New Hebrides"],
+      //     ["Hillary", "Everest", "South Pole"],
+      //   ]
+
+      //   console.log(solve(input))
+    </script>
+  </body>
+</html>
